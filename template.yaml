@@ -10,7 +10,7 @@ Globals:
     Timeout: 20
 
 Resources:
-  ProductServiceFunction:
+  MicronautSecurityServiceFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: io.micronaut.function.aws.proxy.MicronautLambdaHandler::handleRequest
