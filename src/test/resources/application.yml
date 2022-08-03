@@ -1,0 +1,11 @@
+micronaut:
+  security:
+    filter:
+      enabled: false
+datasources:
+  default:
+    url: jdbc:tc:cockroach:latest:///security?TC_INITSCRIPT=db/init_cockroach.sql
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+    schema-generate: UPDATE
+    dialect: POSTGRES
+jpa.default.properties.hibernate.hbm2ddl.auto: update
