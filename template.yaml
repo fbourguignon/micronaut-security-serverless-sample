@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  micronaut-security-serverless-sample
+
+  Sample SAM Template for micronaut-security-serverless-sample
+
+Globals:
+  Function:
+    Timeout: 20
+
+Resources:
+  ProductServiceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: io.micronaut.function.aws.proxy.MicronautLambdaHandler::handleRequest
+      Runtime: java11
+      MemorySize: 2048 #Local enviroment
+      Events:
+        ProxyProductApi:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
