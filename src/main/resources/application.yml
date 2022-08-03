@@ -1,0 +1,20 @@
+micronaut:
+  application:
+    name: micronautSecurityServerlessSample
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
+datasources:
+  default:
+    url: ${JDBC_URL:`jdbc:postgresql://cockroach-db:26257/security?options=--cluster=security-cluster`}
+    driverClassName: org.postgresql.Driver
+    username: ${JDBC_USER:root}
+    password: ${JDBC_PASSWORD:}
+    schema-generate: UPDATE
+    dialect: POSTGRES
+jpa.default.properties.hibernate.hbm2ddl.auto: update

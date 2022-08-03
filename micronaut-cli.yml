@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: br.com.security
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, aws-lambda, graalvm, gradle, jackson-databind, java, java-application, junit, logback, micronaut-build, readme, security, security-annotations, shade, yaml]
