@@ -32,6 +32,10 @@ micronaut-security-serverless-sample % make run
 micronaut-security-serverless-sample % make debug
 ```
 
+3 - Send request
+
+4 - Start debug
+
 -----
 
 ## Local Execution
