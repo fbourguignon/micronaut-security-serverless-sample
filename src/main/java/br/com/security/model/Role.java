@@ -17,7 +17,7 @@ public class Role implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @NaturalId
-    @Column(length = 60)
+    @Column(length = 60,unique = true)
     private RoleType type;
 
     public Long getId() {

@@ -32,8 +32,8 @@ public class AuthenticationProviderUserPassword implements AuthenticationProvide
                 User user = authenticationService.validateUserCredentials((String) authenticationRequest.getIdentity(), (String) authenticationRequest.getSecret());
                 emitter.success(buildSuccessAuthenticationResponse(user));
             }catch (Exception e){
-                e.printStackTrace();
-                emitter.error(AuthenticationResponse.exception());
+                log.error("An exception has occurred on authenticating user [{}]", e.getMessage());
+                emitter.error(AuthenticationResponse.exception("Invalid credentials"));
             }
         });
 

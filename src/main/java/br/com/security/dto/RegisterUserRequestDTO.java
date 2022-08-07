@@ -1,15 +1,13 @@
 package br.com.security.dto;
 
 import io.micronaut.core.annotation.Introspected;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 import javax.validation.constraints.NotEmpty;
 
-@Data
+@Value
 @Builder
-@AllArgsConstructor
 @Introspected
 public class RegisterUserRequestDTO {
 

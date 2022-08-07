@@ -1,6 +1,5 @@
 package br.com.security.model;
 
-import br.com.security.model.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -19,7 +18,7 @@ public class User {
     @Column(nullable = false)
     private UUID uuid = UUID.randomUUID();
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
