@@ -24,3 +24,38 @@ This command starts the docker containers, sam local api and build the project.
 micronaut-security-serverless-sample % make run
 ```
 
+-----
+
+## Local Execution
+
+### Create user
+```json
+POST /users/register HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+        
+{
+"email": "user@gmail.com",
+"password": "12345678"
+}
+```
+### Authenticate user
+```json
+POST /login HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+        
+{
+"username": "user@gmail.com",
+"password": "12345678"
+}
+```
+
+### Cockroach client
+
+```console
+http://localhost:8080
+```
+![picture](img/cockroach.png)
+
+
