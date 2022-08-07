@@ -21,7 +21,7 @@ public class AuthenticationService  {
     public User validateUserCredentials(String email, String password) {
         User user = userService.findUserByEmail(email);
 
-        if(passwordEncoder.validatePassword(password,user.getPassword())){
+        if(!passwordEncoder.validatePassword(password,user.getPassword())){
             log.error("Unable to authenticate the user with provided credentials");
             throw new InvalidCredentialsException("Unable to authenticate the user with provided credentials");
         }

@@ -26,3 +26,6 @@ CREATE TABLE public.tb_user_role (
 
 INSERT INTO public.tb_role (id, "type") VALUES(1, 'ROLE_USER');
 INSERT INTO public.tb_role(id, "type")VALUES(2, 'ROLE_ADMIN');
+
+INSERT INTO public.tb_user (id, email, "password", uuid) VALUES(2, 'user@gmail.com', 'dBAESST+G/CJXfhsvLu/2pzs3kA3DsssZ72D7p5oX4w=', '52ffe6ab-dcf4-4f9f-a9a1-f8fd96fc1c87'::uuid);
+INSERT INTO public.tb_user_role(tb_user_id, tb_role_id) VALUES(2, 1);
