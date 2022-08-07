@@ -19,3 +19,6 @@ debug:
 
 build-graalvm:
 	./gradlew buildNativeLambda
+
+build:
+	./gradlew build

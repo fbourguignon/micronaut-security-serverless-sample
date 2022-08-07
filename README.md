@@ -1,5 +1,5 @@
 # micronaut-security-serverless-sample
-Sample serverless application using Micronaut (Security, Data, AWS), AWS Lambda and API Gateway and GraalVM
+Sample serverless application using Micronaut (Security, Data, AWS), API Gateway and GraalVM
 
 - [x] [Micronaut 3.5.3](https://micronaut.io/)
 - [x] [SAM](https://aws.amazon.com/pt/serverless/sam/)
@@ -8,12 +8,12 @@ Sample serverless application using Micronaut (Security, Data, AWS), AWS Lambda 
 - [x] Java 11
 
 
-### Build Application
+### Build for JVM execution
 ```console
-micronaut-security-serverless-sample % ./gradlew build
+micronaut-security-serverless-sample % make build
 ```
 
-### Build using GraalVM
+### Build for GraalVM execution
 ```console
 micronaut-security-serverless-sample % make build-graalvm
 ```
