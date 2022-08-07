@@ -24,6 +24,14 @@ This command starts the docker containers, sam local api and build the project.
 micronaut-security-serverless-sample % make run
 ```
 
+### Debug Application
+1 - Configure intellij remote debugging.
+![picture](img/debug.png)
+2 - Execute this command
+```console
+micronaut-security-serverless-sample % make debug
+```
+
 -----
 
 ## Local Execution

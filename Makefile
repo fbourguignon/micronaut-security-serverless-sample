@@ -15,7 +15,7 @@ run:
 debug:
 	@make docker-up
 	 sam build
-	 sam local start-api --docker-network micronaut_security_serverless_sample_network --warm-containers EAGER --debug-port 5000
+	 sam local start-api --docker-network micronaut_security_serverless_sample_network --warm-containers EAGER --debug-port 5005
 
 build-graalvm:
 	./gradlew buildNativeLambda
