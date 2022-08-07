@@ -1,7 +1,14 @@
 micronaut:
+  application:
+    name: micronautSecurityServerlessSample
   security:
-    filter:
-      enabled: false
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
 datasources:
   default:
     url: jdbc:tc:cockroach:latest:///security?TC_INITSCRIPT=db/init_cockroach.sql
