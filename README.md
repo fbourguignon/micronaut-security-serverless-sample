@@ -70,4 +70,9 @@ http://localhost:8080
 ```
 ![picture](img/cockroach.png)
 
+### SQL Commands
 
+You can use docker exec to execute sql commands in local cockroach
+```console
+docker exec cockroach-db /cockroach/cockroach sql --insecure --database=security --execute="INSERT INTO public.tb_role (id, "type") VALUES(1, 'ROLE_USER');"
+```
