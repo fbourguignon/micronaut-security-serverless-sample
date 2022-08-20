@@ -37,6 +37,13 @@ micronaut-security-serverless-sample % make debug
 4 - Start debug
 
 -----
+### SQL Commands
+
+You can use docker exec to execute sql commands in local cockroach.
+After the first execution, use this command to insert role in table.
+```console
+docker exec cockroach-db /cockroach/cockroach sql --insecure --database=security --execute="INSERT INTO public.tb_role (id, "type") VALUES(1, 'ROLE_USER');"
+```
 
 ## Local Execution
 
@@ -72,13 +79,6 @@ curl -X "GET" "http://localhost:3000/users/profile" \
 http://localhost:8080
 ```
 ![picture](img/cockroach.png)
-
-### SQL Commands
-
-You can use docker exec to execute sql commands in local cockroach
-```console
-docker exec cockroach-db /cockroach/cockroach sql --insecure --database=security --execute="INSERT INTO public.tb_role (id, "type") VALUES(1, 'ROLE_USER');"
-```
 
 ### Deploy for GraalVM Compilation
 
