@@ -114,9 +114,28 @@ micronaut-security-serverless-sample/build/libs/micronaut-security-serverless-sa
 
 ### Requests to api gateway
 
-- Register user
-![picture](img/post-register-user.png)
+- Create user
+```json
+curl -X "POST" "https://{api-gateway-alias}.execute-api.us-east-1.amazonaws.com/prod/users/register" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{
+    "email": "user@gmail.com",
+    "password": "12345678"
+}'
+```
 - Authenticate user
-![picture](img/post-auth.png)
+```json
+curl -X "POST" "https://{api-gateway-alias}.execute-api.us-east-1.amazonaws.com/prod/login" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{
+    "email": "user@gmail.com",
+    "password": "12345678"
+}'
+```
+
 - Get user profile
-![picture](img/get-user-profile.png)
+```json
+curl -X "GET" "https://{api-gateway-alias}.execute-api.us-east-1.amazonaws.com/prod/users/profile" \
+-H 'Content-Type: application/json; charset=utf-8' \
+--header 'Authorization: Bearer {{access_token}}' 
+```
