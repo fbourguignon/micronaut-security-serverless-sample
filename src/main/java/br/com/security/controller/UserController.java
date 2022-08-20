@@ -46,7 +46,6 @@ public class UserController {
     @Secured({"ROLE_USER"})
     public HttpResponse<UserProfileResponseDTO> getProfile(Principal principal){
         log.info("Handle request to get profile");
-        System.out.println(principal.toString());
         User authenticatedUser = service.findUserByEmail(principal.getName());
         return HttpResponse.ok(userProfileMapper.toResponse(authenticatedUser));
     }

@@ -42,25 +42,28 @@ micronaut-security-serverless-sample % make debug
 
 ### Create user
 ```json
-POST /users/register HTTP/1.1
-Host: localhost:3000
-Content-Type: application/json
-        
-{
-"email": "user@gmail.com",
-"password": "12345678"
-}
+curl -X "POST" "http://localhost:3000/users/register" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{
+    "email": "user@gmail.com",
+    "password": "12345678"
+}'
 ```
 ### Authenticate user
 ```json
-POST /login HTTP/1.1
-Host: localhost:3000
-Content-Type: application/json
-        
-{
-"username": "user@gmail.com",
-"password": "12345678"
-}
+curl -X "POST" "http://localhost:3000/login" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{
+    "email": "user@gmail.com",
+    "password": "12345678"
+}'
+```
+
+### Get user profile
+```json
+curl -X "GET" "http://localhost:3000/users/profile" \
+-H 'Content-Type: application/json; charset=utf-8' \
+--header 'Authorization: Bearer {{access_token}}' 
 ```
 
 ### Cockroach client
@@ -104,6 +107,7 @@ micronaut-security-serverless-sample/build/libs/micronaut-security-serverless-sa
 2 - Map each route in the API gateway and enable lambda integration proxy
 ![picture](img/api-gateway-post-auth-user.png)
 ![picture](img/api-gateway-post-register-user.png)
+![picture](img/api-gateway-get-user-profile.png)
 
 3 - Deploy API gateway stage
 
@@ -114,3 +118,5 @@ micronaut-security-serverless-sample/build/libs/micronaut-security-serverless-sa
 ![picture](img/post-register-user.png)
 - Authenticate user
 ![picture](img/post-auth.png)
+- Get user profile
+![picture](img/get-user-profile.png)
