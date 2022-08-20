@@ -1,9 +1,6 @@
 package br.com.security.controller;
 
-import br.com.security.dto.ExceptionResponseDTO;
-import br.com.security.dto.RegisterUserRequestDTO;
-import br.com.security.dto.RegisterUserResponseDTO;
-import br.com.security.dto.ValidationExceptionResponseDTO;
+import br.com.security.dto.*;
 import com.amazonaws.serverless.proxy.internal.testutils.AwsProxyRequestBuilder;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,10 +8,14 @@ import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpMethod;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
+import io.micronaut.security.authentication.Authentication;
+import io.micronaut.security.authentication.AuthenticationResponse;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,5 +86,34 @@ public class UserControllerTest extends AbstractControllerTest{
         assertEquals(2, validationExceptionResponse.getValidationMessages().size());
         assertTrue(validationExceptionResponse.getValidationMessages().contains("Password is required"));
         assertTrue(validationExceptionResponse.getValidationMessages().contains("Email is required"));
+    }
+
+    @Test
+    @Order(4)
+    void retrieveUserProfile_Success() throws JsonProcessingException {
+
+        var productRequest = RegisterUserRequestDTO.builder()
+                .build();
+
+        AwsProxyRequest authenticationRequest = new AwsProxyRequestBuilder("/login", HttpMethod.POST.toString())
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+                .body("{\"username\": \"user@gmail.com\", \"password\": \"12345678\"}")
+                .build();
+
+        var response = handleApiGatewayRequest(authenticationRequest);
+        final Map<String,String> authenticationResponse = objectMapper.readValue(response.getBody(), Map.class);
+
+        AwsProxyRequest profileRequest = new AwsProxyRequestBuilder("/users/profile", HttpMethod.GET.toString())
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer "+ authenticationResponse.get("access_token"))
+                .build();
+
+        response = handleApiGatewayRequest(profileRequest);
+        final UserProfileResponseDTO userProfileResponse = objectMapper.readValue(response.getBody(), UserProfileResponseDTO.class);
+
+        assertEquals(HttpStatus.OK.getCode(), response.getStatusCode());
+        assertEquals("user@gmail.com", userProfileResponse.getEmail());
+        assertNotNull(userProfileResponse.getUuid());
+
     }
 }
