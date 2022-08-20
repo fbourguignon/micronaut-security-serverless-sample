@@ -54,7 +54,7 @@ curl -X "POST" "http://localhost:3000/users/register" \
 curl -X "POST" "http://localhost:3000/login" \
 -H 'Content-Type: application/json; charset=utf-8' \
 -d $'{
-    "email": "user@gmail.com",
+    "username": "user@gmail.com",
     "password": "12345678"
 }'
 ```
@@ -128,7 +128,7 @@ curl -X "POST" "https://{api-gateway-alias}.execute-api.us-east-1.amazonaws.com/
 curl -X "POST" "https://{api-gateway-alias}.execute-api.us-east-1.amazonaws.com/prod/login" \
 -H 'Content-Type: application/json; charset=utf-8' \
 -d $'{
-    "email": "user@gmail.com",
+    "username": "user@gmail.com",
     "password": "12345678"
 }'
 ```
