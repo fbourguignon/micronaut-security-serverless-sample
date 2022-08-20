@@ -1,0 +1,4 @@
+datasources:
+  default:
+    schema-generate: none
+jpa.default.properties.hibernate.hbm2ddl.auto: none
